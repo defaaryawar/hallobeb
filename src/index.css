@@ -45,3 +45,328 @@ img {
   display: block;
   max-width: 100%;
 }
+
+/* =============================================
+   FLOATING PETALS
+   ============================================= */
+
+.floating-petals-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.floating-petal {
+  position: absolute;
+  width: 14px;
+  height: 18px;
+  background: linear-gradient(135deg, #f5c6c0 0%, #e8a5a0 50%, #d4908a 100%);
+  border-radius: 50% 50% 50% 0;
+  opacity: 0;
+  will-change: transform;
+  animation: floatPetal var(--duration) var(--delay) ease-in-out infinite;
+}
+
+.floating-petal:nth-child(even) {
+  background: linear-gradient(135deg, #f0d0c8 0%, #e8b8b0 50%, #c9a49a 100%);
+  border-radius: 50% 0 50% 50%;
+}
+
+.floating-petal:nth-child(3n) {
+  background: linear-gradient(135deg, #fce4d4 0%, #f0c8b8 50%, #dca898 100%);
+  width: 10px;
+  height: 13px;
+}
+
+@keyframes floatPetal {
+  0% {
+    opacity: 0;
+    transform: translate(0, -20px) rotate(0deg) scale(0.6);
+  }
+  10% {
+    opacity: var(--max-opacity, 0.6);
+  }
+  50% {
+    transform: translate(var(--drift-x, 60px), 50vh) rotate(180deg) scale(1);
+  }
+  90% {
+    opacity: var(--max-opacity, 0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--drift-end, 80px), 105vh) rotate(360deg) scale(0.4);
+  }
+}
+
+/* =============================================
+   PARALLAX UTILITIES
+   ============================================= */
+
+.parallax-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax-layer {
+  will-change: transform;
+}
+
+.parallax-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-muted-rose);
+  opacity: 0.25;
+}
+
+.parallax-line {
+  position: absolute;
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, transparent, var(--color-muted-rose), transparent);
+  opacity: 0.2;
+}
+
+/* Hide scrollbar for carousel */
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* =============================================
+   GIFT MODAL
+   ============================================= */
+
+.gift-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(46, 36, 33, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.gift-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  padding: 40px 28px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(250, 246, 241, 0.95));
+  border-radius: 28px;
+  border: 1px solid rgba(201, 164, 154, 0.25);
+  box-shadow:
+    0 24px 64px rgba(46, 36, 33, 0.2),
+    0 8px 24px rgba(158, 107, 98, 0.1);
+  text-align: center;
+  overflow: hidden;
+}
+
+.gift-modal-card--celebration {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(242, 224, 216, 0.9));
+}
+
+.gift-modal-emoji {
+  font-size: 3.5rem;
+  margin-bottom: 16px;
+  display: block;
+  line-height: 1;
+}
+
+.gift-modal-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--color-ink);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.gift-modal-title--big {
+  font-size: 2.2rem;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--color-deep-rose);
+}
+
+.gift-modal-title--caps {
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.gift-modal-name-highlight {
+  color: var(--color-deep-rose);
+  font-size: 2.2rem;
+  font-weight: 500;
+}
+
+.gift-modal-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--color-muted-rose);
+  margin: 20px auto;
+  transform-origin: center;
+}
+
+.gift-modal-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--color-ink-light);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.gift-modal-question {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--color-deep-rose);
+  margin: 16px 0 24px;
+  font-weight: 400;
+}
+
+.gift-modal-buttons-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.gift-btn {
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 12px;
+  padding: 12px 20px;
+  transition: opacity 0.15s ease;
+  white-space: nowrap;
+}
+
+.gift-btn--no {
+  background: #f0e6e3;
+  color: var(--color-ink-light);
+}
+
+.gift-btn--no:hover {
+  opacity: 0.8;
+}
+
+.gift-btn--yes {
+  background: var(--color-muted-rose);
+  color: #fff;
+  width: 160px;
+}
+
+.gift-btn--yes:hover {
+  opacity: 0.9;
+}
+
+.gift-btn--full {
+  width: 100% !important;
+  max-width: 280px;
+}
+
+.gift-btn--wide {
+  width: auto;
+  min-width: 200px;
+}
+
+.gift-btn--primary {
+  background: var(--color-deep-rose);
+  color: #fff;
+  margin-top: 24px;
+  padding: 14px 28px;
+  font-size: 1rem;
+}
+
+.gift-btn--primary:hover {
+  opacity: 0.9;
+}
+
+.gift-btn--done {
+  margin-top: 24px;
+  background: var(--color-deep-rose);
+  color: #fff;
+  padding: 14px 28px;
+  font-size: 1rem;
+}
+
+.gift-btn--done:hover {
+  opacity: 0.9;
+}
+
+.gift-modal-hint {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--color-muted-rose);
+  margin-top: 16px;
+  font-style: italic;
+}
+
+/* Celebration stickers */
+.gift-sticker-showcase {
+  width: 160px;
+  height: 160px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gift-sticker-big {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+.gift-modal-celebration-text {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--color-ink);
+  margin-bottom: 6px;
+  font-weight: 400;
+}
+
+.gift-modal-celebration-name {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--color-deep-rose);
+  font-weight: 400;
+}
+
+.gift-sticker-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.gift-sticker-mini {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.gift-confetti {
+  position: absolute;
+  font-size: 1.4rem;
+  pointer-events: none;
+  z-index: 0;
+}
