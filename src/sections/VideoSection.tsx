@@ -99,7 +99,7 @@ export default function VideoSection() {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <p
-            className="mt-6 text-sm text-[--color-ink-light] text-center"
+            className="mt-10 text-sm text-[--color-ink-light] text-center"
             style={{ fontFamily: "var(--font-sans)" }}
           >
             tonton sampai habis, ya.
