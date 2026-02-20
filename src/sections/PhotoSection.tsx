@@ -48,7 +48,7 @@ const PHOTO_QUOTES: Record<number, string> = {
   4: "Haii sayanggg, ingat yaa, selama apa?\n\nSelama aku masih ada, kamu akan selalu mempunyai orang yang selalu mencintaimu.",
   5: "Jatuh cinta padamu adalah kesengajaan yang jauh lebih indah dari ribuan hal yang pernah kurencanakan. Dan ini, pada dia yang menawan sekali — semoga dijaga selalu oleh Tuhan.",
   6: "Haiii, makasih ya udah mau sama cowo yang gapunya apa apa ini, makasih udah milih aku dari sekian banyaknya cowo yang menyukaimu, dan sekali lagi makasih buat semua rasa sayang yang kamu berikan ke aku, maaf kalo mungkin aku sering ngecewain kamu, maaf bangett cantikuu.\n\nSayangkuu ke kamu jauh diatas rasa sayang aku ke diriku🫶🏻🌹",
-  7: "Bahagiaku adalah kamu, aku tidak perlu menjelaskan seistimewa apa kamu di hidupku, tapi aku bisa mengatakan bahwa duniaku tersenyum saat bersamamu",
+  7: "Aku katakan sekali lagi NAJMITA ZAHiRA DIRGANTORO, aku tau kamu baca ini satu-satu kan, aku benar2 tulus menyayangimu, tidak ada sedikitpun niat dalam hidupku untuk mempermainkan hatimu apalagi meninggalkanmu.",
 };
 
 function PhotoCard({ photo, index }: { photo: Photo; index: number }) {
