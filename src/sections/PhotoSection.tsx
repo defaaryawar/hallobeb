@@ -42,10 +42,10 @@ const photoEntries = [
 
 // Quotes attached to specific photos
 const PHOTO_QUOTES: Record<number, string> = {
-  3: "Untuk wanitaku, aku ga punya wanita selain satu ini, dia kuat, dia lucu, dia baik, dia akan terus terlihat cantik di mataku, mau seperti apapun tingkahnya saat denganku dia wanita paling sempurna, dan bahkan sampai kapanpun aku akan terus menyayanginya.",
+  3: "Untukmu sayang, aku ga punya wanita selain yang di foto ini, percayalah bahwa dia kuat, dia lucu, dia baik, dia akan terus terlihat cantik di mataku, mau seperti apapun tingkahnya saat denganku dia wanita paling sempurna, dan bahkan sampai kapanpun aku akan terus menyayanginya.",
   4: "Haii sayanggg, ingat yaa, selama apa?\n\nSelama aku masih ada, kamu akan selalu mempunyai orang yang selalu mencintaimu.",
   5: "Jatuh cinta padamu adalah kesengajaan yang jauh lebih indah dari ribuan hal yang pernah kurencanakan. Dan ini, pada dia yang menawan sekali — semoga dijaga selalu oleh Tuhan.",
-  7: "Stay dengan satu orang, nikmati prosesnya bersama walau sering ribut, dia tetap rumah paling nyaman dan aman untuk pulang. Ingat, sekarang bukan lagi soal mencari, tapi bertahan.",
+  7: "Stay dengan kamu seorang, nikmati prosesnya bersama. walaupun sering ribut, kamu tetap rumah paling nyaman dan aman untuk pulang. Ingat, sekarang bukan lagi soal mencari, tapi bertahan.",
 };
 
 function PhotoCard({ photo, index }: { photo: Photo; index: number }) {
