@@ -9,7 +9,7 @@ interface StoryEntry {
 const stories: StoryEntry[] = [
   {
     id: 1,
-    text: "Aku masih ingat pertama kali aku benar-benar melihatmu — bukan hanya wajahmu, tapi caramu tertawa dengan seluruh dirimu, tanpa menahan apapun.",
+    text: "Aku masih ingat pertama kali aku benar-benar melihatmu — bukan hanya sekedar bertemu seperti sebelumnya pernah bertemu, tapi benar-benar melihat dirimu, caramu tertawa dengan seluruh dirimu, tanpa menahan apapun.",
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const stories: StoryEntry[] = [
   },
   {
     id: 4,
-    text: 'Setiap hal kecil yang kamu lakukan — cara kamu memegang mataharimu sendiri, cara kamu bilang "hm" sebelum berpikir — semuanya menetap di ingatanku.',
+    text: 'Setiap hal kecil yang kamu lakukan — cara kamu memegang mataharimu sendiri, cara kamu bilang "hm" sebelum berpikir, — semuanya menetap di ingatanku. apalagi bibirmu yang selalu di tekuk saat sedang manja, "hahahaha" lucu bangettt sayangg',
   },
   {
     id: 5,
@@ -156,7 +156,7 @@ export default function StorySection() {
           className="text-xs tracking-[0.35em] uppercase text-[--color-muted-rose] mb-16"
           style={{ fontFamily: "var(--font-sans)" }}
         >
-          kenangan
+          Listen me
         </p>
       </motion.div>
 

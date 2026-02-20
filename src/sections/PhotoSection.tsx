@@ -9,7 +9,7 @@ interface Photo {
 
 // 🖼️ 7 photos — swap src with '/photos/1.jpg' etc. from your /public/photos/ folder
 const photos: Photo[] = [
-  { id: 1, src: "/foto/foto-1.jpg", alt: "memory one" },
+  { id: 1, src: "/foto/foto-9.jpg", alt: "memory one" },
   { id: 2, src: "/foto/foto-2.JPG", alt: "memory two" },
   { id: 3, src: "/foto/foto-3.jpg", alt: "memory three" },
   { id: 4, src: "/foto/foto-4.JPG", alt: "memory four" },
@@ -42,10 +42,13 @@ const photoEntries = [
 
 // Quotes attached to specific photos
 const PHOTO_QUOTES: Record<number, string> = {
+  1: "Jadi sebelum kamu bertanya padaku kenapa aku mencintaimu, aku sudah tanyakan itu pada Tuhanmu.\nDan Dia tidak memberiku alasan, melainkan keyakinan.",
+  2: "Aku minta maaf jika caraku mencintaimu tidak sama seperti cinta yang kamu inginkan, but trust me i love you more than anything 🩵",
   3: "Untukmu sayang, aku ga punya wanita selain yang di foto ini, percayalah bahwa dia kuat, dia lucu, dia baik, dia akan terus terlihat cantik di mataku, mau seperti apapun tingkahnya saat denganku dia wanita paling sempurna, dan bahkan sampai kapanpun aku akan terus menyayanginya.",
   4: "Haii sayanggg, ingat yaa, selama apa?\n\nSelama aku masih ada, kamu akan selalu mempunyai orang yang selalu mencintaimu.",
   5: "Jatuh cinta padamu adalah kesengajaan yang jauh lebih indah dari ribuan hal yang pernah kurencanakan. Dan ini, pada dia yang menawan sekali — semoga dijaga selalu oleh Tuhan.",
-  7: "Stay dengan kamu seorang, nikmati prosesnya bersama. walaupun sering ribut, kamu tetap rumah paling nyaman dan aman untuk pulang. Ingat, sekarang bukan lagi soal mencari, tapi bertahan.",
+  6: "Haiii, makasih ya udah mau sama cowo yang gapunya apa apa ini, makasih udah milih aku dari sekian banyaknya cowo yang menyukaimu, dan sekali lagi makasih buat semua rasa sayang yang kamu berikan ke aku, maaf kalo mungkin aku sering ngecewain kamu, maaf bangett cantikuu.\n\nSayangkuu ke kamu jauh diatas rasa sayang aku ke diriku🫶🏻🌹",
+  7: "Bahagiaku adalah kamu, aku tidak perlu menjelaskan seistimewa apa kamu di hidupku, tapi aku bisa mengatakan bahwa duniaku tersenyum saat bersamamu",
 };
 
 function PhotoCard({ photo, index }: { photo: Photo; index: number }) {
