@@ -144,9 +144,9 @@ function PhotoCard({ photo, index }: { photo: Photo; index: number }) {
                   margin: 0,
                 }}
               >
-                "Jatuh cinta padamu adalah ketidaksengajaan yang jauh lebih indah dari ribuan hal
-                yang pernah kurencanakan. Dan ini, pada dia yang menawan sekali — semoga dijaga
-                selalu oleh Tuhan."
+                "Jatuh cinta padamu adalah kesengajaan yang jauh lebih indah dari ribuan hal yang
+                pernah kurencanakan. Dan ini, pada dia yang menawan sekali — semoga dijaga selalu
+                oleh Tuhan."
               </p>
             </motion.div>
           )}

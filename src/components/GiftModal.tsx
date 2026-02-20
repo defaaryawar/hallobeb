@@ -227,7 +227,7 @@ export default function GiftModal({ onDone }: GiftModalProps) {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
               >
-                kan jawaban "tidak" nya udah kepake~ 😝
+                kan jawaban "engga" nya udah kepake~ 😝
               </motion.p>
 
               <div className="gift-modal-buttons-row">
@@ -269,7 +269,7 @@ export default function GiftModal({ onDone }: GiftModalProps) {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
               >
-                hehe kan ga bisa jawab "tidak" lagi 😝
+                hehe kan ga bisa jawab "engga" lagi 😝
               </motion.p>
 
               <div className="gift-modal-buttons-row">

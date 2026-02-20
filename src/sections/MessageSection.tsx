@@ -409,6 +409,7 @@ export default function MessageSection() {
             display: "flex",
             gap: "16px",
             overflowX: "auto",
+            overflowY: "hidden",
             scrollSnapType: "x mandatory",
             paddingLeft: "calc(50% - 140px)",
             paddingRight: "calc(50% - 140px)",
@@ -416,6 +417,8 @@ export default function MessageSection() {
             WebkitOverflowScrolling: "touch",
             scrollbarWidth: "none",
             msOverflowStyle: "none",
+            touchAction: "pan-x",
+            alignItems: "stretch",
           }}
         >
           {ALASAN_GROUPS.map((group, i) => {
