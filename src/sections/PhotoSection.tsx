@@ -40,12 +40,20 @@ const photoEntries = [
   { x: -90, y: 60, rotate: -15, scale: 0.5 }, // slide from bottom-left diagonal
 ];
 
+// Quotes attached to specific photos
+const PHOTO_QUOTES: Record<number, string> = {
+  3: "Untuk wanitaku, aku ga punya wanita selain satu ini, dia kuat, dia lucu, dia baik, dia akan terus terlihat cantik di mataku, mau seperti apapun tingkahnya saat denganku dia wanita paling sempurna, dan bahkan sampai kapanpun aku akan terus menyayanginya.",
+  4: "Haii sayanggg, ingat yaa, selama apa?\n\nSelama aku masih ada, kamu akan selalu mempunyai orang yang selalu mencintaimu.",
+  5: "Jatuh cinta padamu adalah kesengajaan yang jauh lebih indah dari ribuan hal yang pernah kurencanakan. Dan ini, pada dia yang menawan sekali — semoga dijaga selalu oleh Tuhan.",
+  7: "Stay dengan satu orang, nikmati prosesnya bersama walau sering ribut, dia tetap rumah paling nyaman dan aman untuk pulang. Ingat, sekarang bukan lagi soal mencari, tapi bertahan.",
+};
+
 function PhotoCard({ photo, index }: { photo: Photo; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const num = String(photo.id).padStart(3, "0");
   const pos = numberPositions[index] ?? numberPositions[0];
   const entry = photoEntries[index % photoEntries.length];
-  const isFoto5 = photo.id === 5;
+  const quote = PHOTO_QUOTES[photo.id];
 
   const { scrollYProgress } = useScroll({
     target: cardRef,
@@ -116,8 +124,8 @@ function PhotoCard({ photo, index }: { photo: Photo; index: number }) {
             />
           </div>
 
-          {/* Love quote attached below foto-5 */}
-          {isFoto5 && (
+          {/* Love quote attached below photo */}
+          {quote && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -142,11 +150,10 @@ function PhotoCard({ photo, index }: { photo: Photo; index: number }) {
                   fontStyle: "italic",
                   textAlign: "center",
                   margin: 0,
+                  whiteSpace: "pre-line",
                 }}
               >
-                "Jatuh cinta padamu adalah kesengajaan yang jauh lebih indah dari ribuan hal yang
-                pernah kurencanakan. Dan ini, pada dia yang menawan sekali — semoga dijaga selalu
-                oleh Tuhan."
+                "{quote}"
               </p>
             </motion.div>
           )}
@@ -165,7 +172,7 @@ function PhotoCard({ photo, index }: { photo: Photo; index: number }) {
               position: "absolute",
               top: pos.top,
               right: pos.right,
-              bottom: isFoto5 ? "auto" : pos.bottom,
+              bottom: quote ? "auto" : pos.bottom,
               left: pos.left,
               lineHeight: 1,
               letterSpacing: "-2px",
