@@ -7,25 +7,38 @@ import MessageSection from "./sections/MessageSection";
 import EndingSection from "./sections/EndingSection";
 import FloatingPetals from "./components/FloatingPetals";
 import GiftModal from "./components/GiftModal";
+import LockedPage from "./pages/LockedPage";
+import NotFoundPage from "./pages/NotFoundPage";
+
+const SECRET_KEY = "/secure/nfc-access/270924131002170504/key-f8a2c9e1d7b3";
 
 export default function App() {
   const [showModal, setShowModal] = useState(true);
+  const path = window.location.pathname;
 
-  return (
-    <>
-      {/* Interactive gift modal on first load */}
-      {showModal && <GiftModal onDone={() => setShowModal(false)} />}
+  // Root path → locked page (tap card message)
+  if (path === "/") {
+    return <LockedPage />;
+  }
 
-      {/* Global floating petals overlay */}
-      <FloatingPetals />
-      <main>
-        <HeroSection />
-        <StorySection />
-        <PhotoSection />
-        <VideoSection />
-        <MessageSection />
-        <EndingSection />
-      </main>
-    </>
-  );
+  // Secret key path → real app
+  if (path === SECRET_KEY) {
+    return (
+      <>
+        {showModal && <GiftModal onDone={() => setShowModal(false)} />}
+        <FloatingPetals />
+        <main>
+          <HeroSection />
+          <StorySection />
+          <PhotoSection />
+          <VideoSection />
+          <MessageSection />
+          <EndingSection />
+        </main>
+      </>
+    );
+  }
+
+  // Any other path → 404
+  return <NotFoundPage />;
 }
