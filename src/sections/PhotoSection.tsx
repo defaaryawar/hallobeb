@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
+import { DecoText } from "../components/ScrollEffects";
 
 interface Photo {
   id: number;
@@ -212,6 +213,22 @@ export default function PhotoSection() {
           y: bgY,
           backgroundImage:
             "radial-gradient(ellipse 80% 50% at 60% 40%, #e8d5c4 0%, transparent 60%)",
+        }}
+      />
+
+      {/* Decorative typographic background */}
+      <DecoText
+        text="momen"
+        speed={0.7}
+        style={{
+          position: "absolute",
+          top: "3%",
+          right: "-15%",
+          fontSize: "clamp(5rem, 22vw, 12rem)",
+          fontFamily: "var(--font-serif)",
+          fontStyle: "italic",
+          fontWeight: 200,
+          letterSpacing: "-0.03em",
         }}
       />
 

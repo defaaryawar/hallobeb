@@ -517,6 +517,26 @@ img {
 }
 
 /* =============================================
+   TYPEWRITER + SCROLL EFFECTS
+   ============================================= */
+
+.typewriter-cursor {
+  color: var(--color-muted-rose);
+  font-weight: 300;
+  font-style: normal;
+  margin-left: 1px;
+}
+
+.deco-text {
+  color: var(--color-muted-rose);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  will-change: transform;
+  z-index: 0;
+}
+
+/* =============================================
    FLOATING MUSIC PLAYER
    ============================================= */
 

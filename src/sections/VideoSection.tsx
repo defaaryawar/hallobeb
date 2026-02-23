@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
+import { Typewriter } from "../components/ScrollEffects";
 
 export default function VideoSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -48,20 +49,15 @@ export default function VideoSection() {
           </p>
         </motion.div>
 
-        {/* Intro line — blur-to-focus */}
-        <motion.div
-          initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
-          whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 1.2, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          <p
-            className="text-[1.3rem] font-light italic leading-snug text-[--color-ink] mb-10"
+        {/* Intro line — typewriter */}
+        <div className="mb-10">
+          <Typewriter
+            text="Ada kata-kata yang jauh lebih mudah kuungkapkan lewat ini."
+            className="text-[1.3rem] font-light italic leading-snug text-[--color-ink] block"
             style={{ fontFamily: "var(--font-serif)" }}
-          >
-            Ada kata-kata yang jauh lebih mudah kuungkapkan lewat ini.
-          </p>
-        </motion.div>
+            speed={0.04}
+          />
+        </div>
       </motion.div>
 
       {/* Video player with zoom + rotation parallax */}

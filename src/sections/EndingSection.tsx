@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
+import { Typewriter, DecoText } from "../components/ScrollEffects";
 
 export default function EndingSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -18,6 +19,21 @@ export default function EndingSection() {
       ref={sectionRef}
       className="parallax-section px-6 py-32 max-w-md mx-auto text-center relative"
     >
+      {/* Decorative typographic background */}
+      <DecoText
+        text="selamanya"
+        speed={0.5}
+        style={{
+          position: "absolute",
+          top: "8%",
+          left: "-20%",
+          fontSize: "clamp(4rem, 18vw, 10rem)",
+          fontFamily: "var(--font-serif)",
+          fontStyle: "italic",
+          fontWeight: 200,
+          letterSpacing: "-0.03em",
+        }}
+      />
       {/* Decorative line — clip-path wipe */}
       <motion.div
         initial={{ scaleX: 0 }}
@@ -68,21 +84,14 @@ export default function EndingSection() {
         </motion.div>
       </motion.div>
 
-      {/* Closing line */}
+      {/* Closing line — typewriter */}
       <motion.div className="parallax-layer mt-14" style={{ y: titleY }}>
-        <motion.div
-          initial={{ opacity: 0, x: -40, y: 20, rotate: -2 }}
-          whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 1.2, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-        >
-          <h2
-            className="text-2xl font-light italic leading-relaxed text-[--color-ink]"
-            style={{ fontFamily: "var(--font-serif)" }}
-          >
-            Sampai nanti, dan nanti setelah itu.
-          </h2>
-        </motion.div>
+        <Typewriter
+          text="Sampai nanti, dan nanti setelah itu."
+          className="text-2xl font-light italic leading-relaxed text-[--color-ink] block"
+          style={{ fontFamily: "var(--font-serif)" }}
+          speed={0.06}
+        />
       </motion.div>
 
       {/* Date + signature */}

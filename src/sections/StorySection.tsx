@@ -1,15 +1,18 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
+import { Typewriter, DecoText } from "../components/ScrollEffects";
 
 interface StoryEntry {
   id: number;
   text: string;
+  typewriter?: boolean;
 }
 
 const stories: StoryEntry[] = [
   {
     id: 1,
     text: "Aku masih ingat pertama kali aku benar-benar melihatmu — bukan hanya sekedar bertemu seperti sebelumnya pernah bertemu, tapi benar-benar melihat dirimu, caramu tertawa dengan seluruh dirimu, tanpa menahan apapun.",
+    typewriter: true,
   },
   {
     id: 2,
@@ -18,6 +21,7 @@ const stories: StoryEntry[] = [
   {
     id: 3,
     text: "Kamu tahu cara membuatku merasa aman — bahkan di saat aku sendiri tidak tahu apa yang aku butuhkan.",
+    typewriter: true,
   },
   {
     id: 4,
@@ -26,6 +30,7 @@ const stories: StoryEntry[] = [
   {
     id: 5,
     text: "Kalau hidup adalah perjalanan yang tidak ada petanya, aku bersyukur bisa tersesat bareng kamu.",
+    typewriter: true,
   },
 ];
 
@@ -87,12 +92,21 @@ function StoryCard({ story, index }: { story: StoryEntry; index: number }) {
           ease: [0.25, 0.1, 0.25, 1],
         }}
       >
-        <p
-          className="text-[1.15rem] leading-[1.9] text-[--color-ink] font-light"
-          style={{ fontFamily: "var(--font-serif)" }}
-        >
-          {story.text}
-        </p>
+        {story.typewriter ? (
+          <Typewriter
+            text={story.text}
+            className="text-[1.15rem] leading-[1.9] text-[--color-ink] font-light block"
+            style={{ fontFamily: "var(--font-serif)" }}
+            speed={0.03}
+          />
+        ) : (
+          <p
+            className="text-[1.15rem] leading-[1.9] text-[--color-ink] font-light"
+            style={{ fontFamily: "var(--font-serif)" }}
+          >
+            {story.text}
+          </p>
+        )}
       </motion.div>
     </motion.div>
   );
@@ -125,6 +139,36 @@ export default function StorySection() {
         }}
       />
 
+      {/* Large decorative typography — scroll-driven */}
+      <DecoText
+        text="cerita"
+        speed={0.6}
+        style={{
+          position: "absolute",
+          top: "5%",
+          left: "-10%",
+          fontSize: "clamp(5rem, 20vw, 10rem)",
+          fontFamily: "var(--font-serif)",
+          fontStyle: "italic",
+          fontWeight: 200,
+          letterSpacing: "-0.03em",
+        }}
+      />
+      <DecoText
+        text="kita"
+        speed={-0.4}
+        style={{
+          position: "absolute",
+          bottom: "15%",
+          right: "-5%",
+          fontSize: "clamp(4rem, 15vw, 8rem)",
+          fontFamily: "var(--font-serif)",
+          fontStyle: "italic",
+          fontWeight: 200,
+          letterSpacing: "-0.03em",
+        }}
+      />
+
       {/* Decorative parallax elements */}
       <motion.div
         className="parallax-dot"
@@ -145,20 +189,15 @@ export default function StorySection() {
         }}
       />
 
-      {/* Section label — clip-path horizontal wipe */}
-      <motion.div
-        initial={{ opacity: 0, clipPath: "inset(0 100% 0 0)" }}
-        whileInView={{ opacity: 1, clipPath: "inset(0 0% 0 0)" }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-      >
-        <p
-          className="text-xs tracking-[0.35em] uppercase text-[--color-muted-rose] mb-16"
+      {/* Section label — typewriter */}
+      <div className="mb-16">
+        <Typewriter
+          text="listen me"
+          className="text-xs tracking-[0.35em] uppercase text-[--color-muted-rose]"
           style={{ fontFamily: "var(--font-sans)" }}
-        >
-          Listen me
-        </p>
-      </motion.div>
+          speed={0.08}
+        />
+      </div>
 
       <div className="flex flex-col gap-14">
         {stories.map((story, i) => (
