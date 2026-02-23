@@ -10,9 +10,10 @@ type SlideKey = "intro" | "love" | "logic" | "beneran" | "bohong" | "gift";
 
 interface GiftModalProps {
   onDone: () => void;
+  onPlayMusic: () => void;
 }
 
-export default function GiftModal({ onDone }: GiftModalProps) {
+export default function GiftModal({ onDone, onPlayMusic }: GiftModalProps) {
   const [slide, setSlide] = useState<SlideKey>("intro");
 
   /* ── Slide "love" — shrinking "ga sayang" button ── */
@@ -378,7 +379,10 @@ export default function GiftModal({ onDone }: GiftModalProps) {
 
               <motion.button
                 className="gift-btn gift-btn--done"
-                onClick={onDone}
+                onClick={() => {
+                  onPlayMusic();
+                  onDone();
+                }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 2 }}
