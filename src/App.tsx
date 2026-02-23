@@ -22,10 +22,21 @@ export default function App() {
   const handlePlayMusic = useCallback(() => {
     const audio = audioRef.current;
     if (audio) {
+      audio.volume = 0;
       audio.play().catch(() => {
         /* browser may block autoplay — silent fail */
       });
       setIsPlaying(true);
+
+      // Smooth fade-in over ~3 seconds
+      const steps = 30;
+      const interval = 100; // ms per step
+      let step = 0;
+      const fade = setInterval(() => {
+        step++;
+        audio.volume = Math.min(step / steps, 1);
+        if (step >= steps) clearInterval(fade);
+      }, interval);
     }
   }, []);
 
