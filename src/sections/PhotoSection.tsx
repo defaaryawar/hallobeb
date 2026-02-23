@@ -43,8 +43,8 @@ const photoEntries = [
 
 // Quotes attached to specific photos
 const PHOTO_QUOTES: Record<number, string> = {
-  1: "Sebelum kamu bertanya padaku kenapa aku mencintaimu, aku sudah tanyakan itu pada Tuhanmu.\nDan Dia tidak memberiku alasan, melainkan keyakinan.",
-  2: "Aku minta maaf jika caraku mencintaimu tidak sama seperti cinta yang kamu inginkan, but trust me i love you more than anything 🩵",
+  1: "Sebelum kamu tanya aku, kenapa aku mencintaimu, aku sudah tanyakan itu pada Tuhanmu.\nDan Dia tidak memberiku alasan, melainkan keyakinan.",
+  2: "Aku minta maaf jika cara aku mencintaimu tidak sama seperti cinta yang kamu inginkan, but trust me i love you more than anything 🩵",
   3: "Untukmu sayang, aku ga punya wanita selain yang di foto ini, percayalah bahwa dia kuat, dia lucu, dia baik, dia akan terus terlihat cantik di mataku, mau seperti apapun tingkahnya saat denganku dia wanita paling sempurna, dan bahkan sampai kapanpun aku akan terus menyayanginya.",
   4: "Haii sayanggg, ingat yaa, selama apa?\n\nSelama aku masih ada, kamu akan selalu mempunyai orang yang selalu mencintaimu.",
   5: "Jatuh cinta padamu adalah kesengajaan yang jauh lebih indah dari ribuan hal yang pernah kurencanakan. Dan ini, pada dia yang menawan sekali — semoga dijaga selalu oleh Tuhan.",

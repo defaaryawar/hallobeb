@@ -11,26 +11,31 @@ interface StoryEntry {
 const stories: StoryEntry[] = [
   {
     id: 1,
-    text: "Aku masih ingat pertama kali aku benar-benar melihatmu — bukan hanya sekedar bertemu seperti sebelumnya pernah bertemu, tapi benar-benar melihat dirimu, caramu tertawa dengan seluruh dirimu, tanpa menahan apapun.",
+    text: "Aku masih inget gimana kita pertama kali ketemu lagi setelah lama lost contact, dan melewati berbagai macam halangan, terutama aku sayanggg... aku jadi halangan terbesar buat diriku sendiri, but thankyouuu lovee🫶🏻, kamu selalu berusaha lewatin rintangan itu.🩵",
     typewriter: true,
   },
   {
     id: 2,
-    text: "Ada hari-hari di mana aku hanya ingin duduk diam di dekatmu. Bukan bicara. Bukan melakukan apapun yang berarti. Hanya ada.",
+    text: "Aku selalu ingin berterimakasih kepada kamu karena kamu gapernah mau menyerah, dalam segala hal apapun itu, kamu tau ga? kamu itu best my choice",
   },
   {
     id: 3,
-    text: "Kamu tahu cara membuatku merasa aman — bahkan di saat aku sendiri tidak tahu apa yang aku butuhkan.",
+    text: "Kamu manusia yang paling tau aku sekarang, kamu tau aku marah gimana? kamu tau kalo aku ngambek, kamu tau segala hal tentang aku sekarang! jadi tolong jangan ada pikiran untuk pergi ataupun menjauh sayang😓",
     typewriter: true,
   },
   {
     id: 4,
-    text: 'Setiap hal kecil yang kamu lakukan — cara kamu memegang mataharimu sendiri, cara kamu bilang "hm" sebelum berpikir, — semuanya menetap di ingatanku. apalagi bibirmu yang selalu di tekuk saat sedang manja, "hahahaha" lucu bangettt sayangg',
+    text: 'Setiap hal kecil yang kamu lakukan — cara kamu memegang mataharimu sendiri, cara kamu senyum, cara kamu tidur, — semuanya menetap di ingatanku. apalagi bibir kamu yang selalu di tekuk saat sedang manja, "hahahaha" lucu bangettt sayangg',
   },
   {
     id: 5,
-    text: "Kalau hidup adalah perjalanan yang tidak ada petanya, aku bersyukur bisa tersesat bareng kamu.",
+    text: "Kalau hidup adalah perjalanan yang tidak ada petanya, semoga selalu tersesat bareng kamu.",
     typewriter: true,
+  },
+  {
+    id: 6,
+    text: "Gada lagi hal yang bisa aku berikan dengan mulutku selain ucapan terima kasih dan permintaan maaf, tapi aku akan selalu berusaha memberikan yang terbaik untuk kamu. Semoga kamu selalu dijaga oleh tuhan ya sayanggg🩵🫶🏻🫶🏻",
+    typewriter: false,
   },
 ];
 
