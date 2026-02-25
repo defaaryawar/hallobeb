@@ -10,7 +10,7 @@ interface Photo {
 
 // 🖼️ 7 photos — swap src with '/photos/1.webp' etc. from your /public/photos/ folder
 const photos: Photo[] = [
-  { id: 1, src: "/foto/foto-9.webp", alt: "memory one" },
+  { id: 1, src: "/foto/foto-7.webp", alt: "memory one" },
   { id: 2, src: "/foto/foto-2.webp", alt: "memory two" },
   { id: 3, src: "/foto/foto-3.webp", alt: "memory three" },
   { id: 4, src: "/foto/foto-4.webp", alt: "memory four" },
