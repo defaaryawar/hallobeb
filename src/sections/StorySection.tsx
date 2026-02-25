@@ -1,114 +1,112 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
-import { Typewriter, DecoText } from "../components/ScrollEffects";
+import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
 
-interface StoryEntry {
-  id: number;
-  text: string;
-  typewriter?: boolean;
-}
-
-const stories: StoryEntry[] = [
+/* ─── Stories ─── */
+const stories = [
   {
     id: 1,
-    text: "Aku masih ingat pertama kali aku benar-benar melihatmu — bukan hanya sekedar bertemu seperti sebelumnya pernah bertemu, tapi benar-benar melihat dirimu, caramu tertawa dengan seluruh dirimu, tanpa menahan apapun.",
-    typewriter: true,
+    text: "Aku masih inget gimana kita pertama kali ketemu lagi setelah lama lost contact, dan melewati berbagai macam halangan, terutama aku sayanggg... aku jadi halangan terbesar buat diriku sendiri, but thankyouuu lovee🫶🏻, kamu selalu berusaha lewatin rintangan itu.🩵",
   },
   {
     id: 2,
-    text: "Ada hari-hari di mana aku hanya ingin duduk diam di dekatmu. Bukan bicara. Bukan melakukan apapun yang berarti. Hanya ada.",
+    text: "Aku selalu ingin berterimakasih kepada kamu karena kamu gapernah mau menyerah, dalam segala hal apapun itu, kamu tau ga? kamu itu best my choice",
   },
   {
     id: 3,
-    text: "Kamu tahu cara membuatku merasa aman — bahkan di saat aku sendiri tidak tahu apa yang aku butuhkan.",
-    typewriter: true,
+    text: "Kamu manusia yang paling tau aku sekarang, kamu tau aku marah gimana? kamu tau kalo aku ngambek, kamu tau segala hal tentang aku sekarang! jadi tolong jangan ada pikiran untuk pergi ataupun menjauh sayang😓",
   },
   {
     id: 4,
-    text: 'Setiap hal kecil yang kamu lakukan — cara kamu memegang mataharimu sendiri, cara kamu bilang "hm" sebelum berpikir, — semuanya menetap di ingatanku. apalagi bibirmu yang selalu di tekuk saat sedang manja, "hahahaha" lucu bangettt sayangg',
+    text: "i always love you jangan pernah ragu untuk mengadu tentang duniamu, libatkan aku di setiap apapun itu, dan jika merasa dunia sedang tidak berpihak ke kamu, jangan lupa kamu masih punya aku yang selalu bersyukur kamu ada di dunia ini",
   },
   {
     id: 5,
-    text: "Kalau hidup adalah perjalanan yang tidak ada petanya, aku bersyukur bisa tersesat bareng kamu.",
-    typewriter: true,
+    text: "Kalau hidup adalah perjalanan yang tidak ada petanya, semoga kita selalu tersesat bareng WKWKWKW.",
+  },
+  {
+    id: 6,
+    text: "Gada lagi hal yang bisa aku berikan dengan mulutku selain ucapan terima kasih dan permintaan maaf, tapi aku akan selalu berusaha memberikan yang terbaik untuk kamu. Semoga kamu selalu dijaga oleh tuhan ya sayanggg🩵🫶🏻🫶🏻",
   },
 ];
 
-// Different entry animation per card — creative variety!
-const cardAnimations = [
-  // Card 1: Slide from top-left diagonal
-  { x: -80, y: -60, rotate: -8, scale: 0.7 },
-  // Card 2: Slide from right with blur
-  { x: 100, y: 0, rotate: 5, scale: 0.85 },
-  // Card 3: Scale up from center with rotate
-  { x: 0, y: 60, rotate: -3, scale: 0.5 },
-  // Card 4: Slide from bottom-right diagonal
-  { x: 60, y: 80, rotate: 6, scale: 0.75 },
-  // Card 5: Wipe from left
-  { x: -120, y: 20, rotate: -10, scale: 0.8 },
-];
+const STORY_COUNT = stories.length;
 
-function StoryCard({ story, index }: { story: StoryEntry; index: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
+/* ─── Single story: word-by-word highlight as you scroll ─── */
+function StorySlide({
+  story,
+  index,
+  globalProgress,
+}: {
+  story: (typeof stories)[0];
+  index: number;
+  globalProgress: MotionValue<number>;
+}) {
+  const storyStart = index / STORY_COUNT;
+  const storyEnd = (index + 1) / STORY_COUNT;
 
-  const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start end", "end start"],
-  });
+  // Slide visibility
+  const slideOpacity = useTransform(
+    globalProgress,
+    [storyStart, storyStart + 0.02, storyEnd - 0.02, storyEnd],
+    [0, 1, 1, 0],
+  );
 
-  const isEven = index % 2 === 0;
+  // Gentle float up
+  const slideY = useTransform(globalProgress, [storyStart, storyEnd], [30, -30]);
 
-  // Parallax — different speeds per card
-  const y = useTransform(scrollYProgress, [0, 1], [60 + index * 15, -60 - index * 15]);
-  const x = useTransform(scrollYProgress, [0, 0.5, 1], [isEven ? -40 : 40, 0, isEven ? 20 : -20]);
-  const rotate = useTransform(scrollYProgress, [0, 0.5, 1], [isEven ? -2 : 2, 0, isEven ? 1 : -1]);
-  const scale = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [0.9, 1, 1, 0.95]);
+  // Internal progress (0→1) within this slide
+  const localProgress = useTransform(globalProgress, [storyStart + 0.03, storyEnd - 0.03], [0, 1]);
 
-  const entry = cardAnimations[index % cardAnimations.length];
+  const words = story.text.split(" ");
 
   return (
-    <motion.div ref={cardRef} className="parallax-layer" style={{ y, x, rotate, scale }}>
-      <motion.div
-        initial={{
-          opacity: 0,
-          x: entry.x,
-          y: entry.y,
-          rotate: entry.rotate,
-          scale: entry.scale,
-          filter: index % 2 === 1 ? "blur(8px)" : "blur(0px)",
-        }}
-        whileInView={{
-          opacity: 1,
-          x: 0,
-          y: 0,
-          rotate: 0,
-          scale: 1,
-          filter: "blur(0px)",
-        }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{
-          duration: 1.1,
-          delay: index * 0.05,
-          ease: [0.25, 0.1, 0.25, 1],
-        }}
-      >
-        {story.typewriter ? (
-          <Typewriter
-            text={story.text}
-            className="text-[1.15rem] leading-[1.9] text-[--color-ink] font-light block"
-            style={{ fontFamily: "var(--font-serif)" }}
-            speed={0.03}
+    <motion.div className="ss-slide" style={{ opacity: slideOpacity, y: slideY }}>
+      {/* Story number */}
+      <span className="ss-num" aria-hidden="true">
+        {String(story.id).padStart(2, "0")}
+      </span>
+
+      {/* Word-by-word highlight text */}
+      <p className="ss-text">
+        {words.map((word, wi) => (
+          <StoryWord
+            key={wi}
+            word={word}
+            index={wi}
+            total={words.length}
+            progress={localProgress}
           />
-        ) : (
-          <p
-            className="text-[1.15rem] leading-[1.9] text-[--color-ink] font-light"
-            style={{ fontFamily: "var(--font-serif)" }}
-          >
-            {story.text}
-          </p>
-        )}
+        ))}
+      </p>
+
+      {/* Progress bar */}
+      <motion.div className="ss-progress-line">
+        <motion.div className="ss-progress-fill" style={{ scaleX: localProgress }} />
       </motion.div>
     </motion.div>
+  );
+}
+
+/* ─── Individual word: dim → vivid based on scroll ─── */
+function StoryWord({
+  word,
+  index,
+  total,
+  progress,
+}: {
+  word: string;
+  index: number;
+  total: number;
+  progress: MotionValue<number>;
+}) {
+  const wordStart = Math.max(0, index / total - 0.1);
+  const wordEnd = Math.min(1, index / total + 0.05);
+  const wordOpacity = useTransform(progress, [wordStart, wordEnd], [0.15, 1]);
+
+  return (
+    <motion.span className="ss-word" style={{ opacity: wordOpacity }}>
+      {word}{" "}
+    </motion.span>
   );
 }
 
@@ -117,92 +115,38 @@ export default function StorySection() {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "end start"],
+    offset: ["start start", "end end"],
   });
 
-  // Background gradient parallax at 2x speed
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
-  // Decorative elements at extreme parallax
-  const dotY1 = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const dotY2 = useTransform(scrollYProgress, [0, 1], [0, -300]);
-  const lineY = useTransform(scrollYProgress, [0, 1], [50, -250]);
+  // Shifting background hue
+  const bgGradient = useTransform(scrollYProgress, (v) => {
+    const h = v * 30;
+    return `radial-gradient(ellipse 80% 60% at 50% 45%, hsl(${20 + h}, 30%, 95%) 0%, hsl(${15 + h}, 20%, 99%) 70%)`;
+  });
+
+  // Scroll hint fades
+  const hintOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
 
   return (
-    <section ref={sectionRef} className="parallax-section px-6 py-28 max-w-md mx-auto relative">
-      {/* Parallax background gradient */}
-      <motion.div
-        className="absolute inset-0 -z-10 opacity-20"
-        style={{
-          y: bgY,
-          backgroundImage:
-            "radial-gradient(ellipse 100% 60% at 50% 30%, #f2e0d8 0%, transparent 70%)",
-        }}
-      />
+    <section ref={sectionRef} className="ss-outer" style={{ height: `${STORY_COUNT * 150}vh` }}>
+      <div className="ss-sticky">
+        {/* Animated background */}
+        <motion.div className="ss-bg" style={{ background: bgGradient }} />
 
-      {/* Large decorative typography — scroll-driven */}
-      <DecoText
-        text="cerita"
-        speed={0.6}
-        style={{
-          position: "absolute",
-          top: "5%",
-          left: "-10%",
-          fontSize: "clamp(5rem, 20vw, 10rem)",
-          fontFamily: "var(--font-serif)",
-          fontStyle: "italic",
-          fontWeight: 200,
-          letterSpacing: "-0.03em",
-        }}
-      />
-      <DecoText
-        text="kita"
-        speed={-0.4}
-        style={{
-          position: "absolute",
-          bottom: "15%",
-          right: "-5%",
-          fontSize: "clamp(4rem, 15vw, 8rem)",
-          fontFamily: "var(--font-serif)",
-          fontStyle: "italic",
-          fontWeight: 200,
-          letterSpacing: "-0.03em",
-        }}
-      />
+        {/* Label */}
+        <div className="ss-label-wrap">
+          <span className="ss-label">listen me babe</span>
+        </div>
 
-      {/* Decorative parallax elements */}
-      <motion.div
-        className="parallax-dot"
-        style={{ top: "10%", right: "5%", y: dotY1, width: 7, height: 7 }}
-      />
-      <motion.div
-        className="parallax-dot"
-        style={{ bottom: "20%", left: "0%", y: dotY2, width: 5, height: 5, opacity: 0.15 }}
-      />
-      <motion.div className="parallax-line" style={{ top: "40%", left: "-10px", y: lineY }} />
-      <motion.div
-        className="parallax-line"
-        style={{
-          top: "65%",
-          right: "-8px",
-          y: useTransform(scrollYProgress, [0, 1], [0, -180]),
-          height: 80,
-        }}
-      />
-
-      {/* Section label — typewriter */}
-      <div className="mb-16">
-        <Typewriter
-          text="listen me"
-          className="text-xs tracking-[0.35em] uppercase text-[--color-muted-rose]"
-          style={{ fontFamily: "var(--font-sans)" }}
-          speed={0.08}
-        />
-      </div>
-
-      <div className="flex flex-col gap-14">
+        {/* Story slides */}
         {stories.map((story, i) => (
-          <StoryCard key={story.id} story={story} index={i} />
+          <StorySlide key={story.id} story={story} index={i} globalProgress={scrollYProgress} />
         ))}
+
+        {/* Scroll hint */}
+        <motion.div className="ss-scroll-hint" style={{ opacity: hintOpacity }}>
+          scroll perlahan ↓
+        </motion.div>
       </div>
     </section>
   );
