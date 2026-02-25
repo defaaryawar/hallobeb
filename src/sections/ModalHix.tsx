@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "motion/react";
+import { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform, useSpring } from "motion/react";
 
 /* ─── 11 image+quote slides ─── */
 const imageSlides = [
@@ -125,43 +125,52 @@ const TOTAL_SLIDES = 1 + imageSlides.length; // 12
 export default function ModalHix() {
   const sectionRef = useRef<HTMLElement>(null);
 
+  /* ── Track viewport width for pixel-based drift ── */
+  const [vw, setVw] = useState(typeof window !== "undefined" ? window.innerWidth : 375);
+  useEffect(() => {
+    const onResize = () => setVw(window.innerWidth);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end end"],
   });
 
+  /* ── Smooth scroll progress (buttery cinematic feel) ── */
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 20,
+    mass: 0.3,
+  });
+
   /* ── 1. Elevation reveal ── */
-  const panelScale = useTransform(scrollYProgress, [0, 0.06], [0.96, 1]);
-  const panelOpacity = useTransform(scrollYProgress, [0, 0.04], [0, 1]);
-  const panelY = useTransform(scrollYProgress, [0, 0.06], [60, 0]);
+  const panelScale = useTransform(smoothProgress, [0, 0.06], [0.96, 1]);
+  const panelOpacity = useTransform(smoothProgress, [0, 0.04], [0, 1]);
+  const panelY = useTransform(smoothProgress, [0, 0.06], [60, 0]);
 
   /* ── 2. Intro holds, then slides FAR LEFT ── */
-  const introX = useTransform(scrollYProgress, [0.12, 0.2], [0, -600]);
-  const introOpacity = useTransform(scrollYProgress, [0.12, 0.19], [1, 0]);
+  const introX = useTransform(smoothProgress, [0.12, 0.2], [0, -600]);
+  const introOpacity = useTransform(smoothProgress, [0.12, 0.19], [1, 0]);
 
-  /* ── 3. Horizontal drift ── */
-  const driftPercent = ((TOTAL_SLIDES - 1) / TOTAL_SLIDES) * 100;
-  const xDrift = useTransform(
-    scrollYProgress,
-    [0.12, 0.96],
-    ["0%", `-${driftPercent.toFixed(3)}%`],
-  );
+  /* ── 3. Horizontal drift (NUMERIC px → GPU-accelerated) ── */
+  const driftPx = (TOTAL_SLIDES - 1) * vw;
+  const xDrift = useTransform(smoothProgress, [0.12, 0.96], [0, -driftPx]);
 
-  /* ── 4. Parallax deco layers ── */
-  const decoY1 = useTransform(scrollYProgress, [0, 1], [0, -90]);
-  const decoY2 = useTransform(scrollYProgress, [0, 1], [0, 60]);
-  const decoY3 = useTransform(scrollYProgress, [0, 1], [20, -40]);
+  /* ── 4. Parallax deco (single layer for performance) ── */
+  const decoY = useTransform(smoothProgress, [0, 1], [0, -60]);
 
   /* ── 5. Background ── */
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
+  const bgY = useTransform(smoothProgress, [0, 1], [0, 120]);
 
   return (
     <section ref={sectionRef} className="mhx-outer" style={{ height: `${TOTAL_SLIDES * 110}vh` }}>
       <motion.div className="mhx-bg" style={{ y: bgY }} />
 
       <div className="mhx-sticky">
-        {/* ── Decorative layers ── */}
-        <motion.div className="mhx-deco-layer" style={{ y: decoY1 }}>
+        {/* ── Decorative layer (consolidated for perf) ── */}
+        <motion.div className="mhx-deco-layer" style={{ y: decoY }}>
           <DecoArrow
             style={{ top: "14%", left: "5%", width: 130, rotate: "12deg", opacity: 0.1 }}
           />
@@ -169,18 +178,10 @@ export default function ModalHix() {
             style={{ bottom: "20%", right: "4%", width: 110, rotate: "-10deg", opacity: 0.08 }}
             flip
           />
-          <DecoStar style={{ top: "28%", right: "18%", width: 14, opacity: 0.1 }} />
-        </motion.div>
-        <motion.div className="mhx-deco-layer" style={{ y: decoY2 }}>
           <DecoCircle style={{ top: "10%", right: "12%", width: 80, opacity: 0.06 }} />
           <DecoCircle style={{ bottom: "16%", left: "10%", width: 65, opacity: 0.05 }} />
+          <DecoStar style={{ top: "28%", right: "18%", width: 14, opacity: 0.1 }} />
           <DecoStar style={{ bottom: "32%", left: "7%", width: 10, opacity: 0.08 }} />
-        </motion.div>
-        <motion.div className="mhx-deco-layer" style={{ y: decoY3 }}>
-          <DecoArrow
-            style={{ top: "68%", right: "12%", width: 100, rotate: "-18deg", opacity: 0.07 }}
-          />
-          <DecoStar style={{ top: "48%", left: "20%", width: 8, opacity: 0.1 }} />
         </motion.div>
 
         {/* ── Focus vignette ── */}
@@ -234,6 +235,8 @@ export default function ModalHix() {
                             autoPlay
                             loop
                             playsInline
+                            preload="metadata"
+                            style={{ willChange: "transform" }}
                           />
                         ) : (
                           <img

@@ -1056,6 +1056,8 @@ img {
   display: flex;
   align-items: center;
   z-index: 2;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
 .mhx-track {
@@ -1146,6 +1148,8 @@ img {
   width: 100%;
   background: #fff;
   transition: box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .mhx-frame:hover {
