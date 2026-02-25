@@ -8,15 +8,15 @@ interface Photo {
   alt: string;
 }
 
-// 🖼️ 7 photos — swap src with '/photos/1.jpg' etc. from your /public/photos/ folder
+// 🖼️ 7 photos — swap src with '/photos/1.webp' etc. from your /public/photos/ folder
 const photos: Photo[] = [
-  { id: 1, src: "/foto/foto-9.jpg", alt: "memory one" },
-  { id: 2, src: "/foto/foto-2.JPG", alt: "memory two" },
-  { id: 3, src: "/foto/foto-3.jpg", alt: "memory three" },
-  { id: 4, src: "/foto/foto-4.JPG", alt: "memory four" },
-  { id: 5, src: "/foto/foto-5.jpg", alt: "memory five" },
-  { id: 6, src: "/foto/foto-6.jpg", alt: "memory six" },
-  { id: 7, src: "/foto/foto-8.jpg", alt: "memory seven" },
+  { id: 1, src: "/foto/foto-9.webp", alt: "memory one" },
+  { id: 2, src: "/foto/foto-2.webp", alt: "memory two" },
+  { id: 3, src: "/foto/foto-3.webp", alt: "memory three" },
+  { id: 4, src: "/foto/foto-4.webp", alt: "memory four" },
+  { id: 5, src: "/foto/foto-5.webp", alt: "memory five" },
+  { id: 6, src: "/foto/foto-6.webp", alt: "memory six" },
+  { id: 7, src: "/foto/foto-8.webp", alt: "memory seven" },
 ];
 
 // Alternating positions so each number feels placed differently
