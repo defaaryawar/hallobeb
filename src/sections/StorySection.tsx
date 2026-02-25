@@ -120,11 +120,8 @@ export default function StorySection() {
     offset: ["start start", "end end"],
   });
 
-  // Shifting background hue
-  const bgGradient = useTransform(scrollYProgress, (v) => {
-    const h = v * 30;
-    return `radial-gradient(ellipse 80% 60% at 50% 45%, hsl(${20 + h}, 30%, 95%) 0%, hsl(${15 + h}, 20%, 99%) 70%)`;
-  });
+  // Shifting background hue (GPU-friendly: numeric rotate instead of string gradient)
+  const bgHue = useTransform(scrollYProgress, [0, 1], [0, 30]);
 
   // Scroll hint fades
   const hintOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
@@ -133,7 +130,10 @@ export default function StorySection() {
     <section ref={sectionRef} className="ss-outer" style={{ height: `${STORY_COUNT * 150}vh` }}>
       <div className="ss-sticky">
         {/* Animated background */}
-        <motion.div className="ss-bg" style={{ background: bgGradient }} />
+        <motion.div
+          className="ss-bg"
+          style={{ filter: useTransform(bgHue, (h) => `hue-rotate(${h}deg)`) }}
+        />
 
         {/* Label */}
         <div className="ss-label-wrap">

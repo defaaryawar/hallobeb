@@ -831,7 +831,9 @@ img {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  transition: background 0.3s ease;
+  will-change: filter;
+  backface-visibility: hidden;
+  background: radial-gradient(ellipse 80% 60% at 50% 45%, hsl(20, 30%, 95%) 0%, hsl(15, 20%, 99%) 70%);
 }
 
 /* ── Label (top-left) ── */

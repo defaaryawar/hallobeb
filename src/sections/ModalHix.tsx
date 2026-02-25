@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useSpring } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 /* ─── 11 image+quote slides ─── */
 const imageSlides = [
@@ -25,7 +25,7 @@ const imageSlides = [
   {
     image: "/foto-modalHix/foto-2.webp",
     quote:
-      "No matter what happens, just remember you're my sweet girl, and I'll always love you through anything ang everything.",
+      "No matter what happens, just remember you're my sweet girl, and I'll always love you through anything and everything.",
   },
   {
     image: "/foto-modalHix/foto-8.webp",
@@ -34,7 +34,7 @@ const imageSlides = [
   {
     image: "/foto-modalHix/foto-4.webp",
     quote:
-      "Kamuuu lucuu bangettt tauuu!!! kamuuu ituu cewekkk terlucuu, tergemashhh, terimutt,terclingyyy Terr Terr Terr SEMUANYAA!! aku beruntung bangett bisaa dapatin cewek kaya kamuu udah cantikk, lucu, baik, pinter lagi, gaada kekurangannyaa, im soooo in luvvvv youuuu my grillll🫀🤍.",
+      "Kamuuu lucuu bangettt tauuu!!! kamuuu ituu cewekkk terlucuu, tergemashhh, terimutt, terclingyyy Terr Terr Terr SEMUANYAA!! aku beruntung bangett bisaa dapatin cewek kaya kamuu udah cantikk, lucu, baik, pinter lagi, gaada kekurangannyaa, im soooo in luvvvv youuuu my grillll🫀🤍.",
   },
   {
     video:
@@ -138,31 +138,24 @@ export default function ModalHix() {
     offset: ["start end", "end end"],
   });
 
-  /* ── Smooth scroll progress (buttery cinematic feel) ── */
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 20,
-    mass: 0.3,
-  });
-
   /* ── 1. Elevation reveal ── */
-  const panelScale = useTransform(smoothProgress, [0, 0.06], [0.96, 1]);
-  const panelOpacity = useTransform(smoothProgress, [0, 0.04], [0, 1]);
-  const panelY = useTransform(smoothProgress, [0, 0.06], [60, 0]);
+  const panelScale = useTransform(scrollYProgress, [0, 0.06], [0.96, 1]);
+  const panelOpacity = useTransform(scrollYProgress, [0, 0.04], [0, 1]);
+  const panelY = useTransform(scrollYProgress, [0, 0.06], [60, 0]);
 
   /* ── 2. Intro holds, then slides FAR LEFT ── */
-  const introX = useTransform(smoothProgress, [0.12, 0.2], [0, -600]);
-  const introOpacity = useTransform(smoothProgress, [0.12, 0.19], [1, 0]);
+  const introX = useTransform(scrollYProgress, [0.12, 0.2], [0, -600]);
+  const introOpacity = useTransform(scrollYProgress, [0.12, 0.19], [1, 0]);
 
   /* ── 3. Horizontal drift (NUMERIC px → GPU-accelerated) ── */
   const driftPx = (TOTAL_SLIDES - 1) * vw;
-  const xDrift = useTransform(smoothProgress, [0.12, 0.96], [0, -driftPx]);
+  const xDrift = useTransform(scrollYProgress, [0.12, 0.96], [0, -driftPx]);
 
   /* ── 4. Parallax deco (single layer for performance) ── */
-  const decoY = useTransform(smoothProgress, [0, 1], [0, -60]);
+  const decoY = useTransform(scrollYProgress, [0, 1], [0, -60]);
 
   /* ── 5. Background ── */
-  const bgY = useTransform(smoothProgress, [0, 1], [0, 120]);
+  const bgY = useTransform(scrollYProgress, [0, 1], [0, 120]);
 
   return (
     <section ref={sectionRef} className="mhx-outer" style={{ height: `${TOTAL_SLIDES * 110}vh` }}>
