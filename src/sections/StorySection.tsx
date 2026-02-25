@@ -29,20 +29,6 @@ const stories = [
     text: "Gada lagi hal yang bisa aku berikan dengan mulutku selain ucapan terima kasih dan permintaan maaf, tapi aku akan selalu berusaha memberikan yang terbaik untuk kamu. Semoga kamu selalu dijaga oleh tuhan ya sayanggg🩵🫶🏻🫶🏻",
     typewriter: true,
   },
-  {
-    id: 4,
-    text: 'Setiap hal kecil yang kamu lakukan — cara kamu memegang mataharimu sendiri, cara kamu senyum, cara kamu tidur, — semuanya menetap di ingatanku. apalagi bibir kamu yang selalu di tekuk saat sedang manja, "hahahaha" lucu bangettt sayangg',
-  },
-  {
-    id: 5,
-    text: "Kalau hidup adalah perjalanan yang tidak ada petanya, semoga selalu tersesat bareng kamu.",
-    typewriter: true,
-  },
-  {
-    id: 6,
-    text: "Gada lagi hal yang bisa aku berikan dengan mulutku selain ucapan terima kasih dan permintaan maaf, tapi aku akan selalu berusaha memberikan yang terbaik untuk kamu. Semoga kamu selalu dijaga oleh tuhan ya sayanggg🩵🫶🏻🫶🏻",
-    typewriter: false,
-  },
 ];
 
 const STORY_COUNT = stories.length;
