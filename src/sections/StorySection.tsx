@@ -127,7 +127,7 @@ export default function StorySection() {
   const hintOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
 
   return (
-    <section ref={sectionRef} className="ss-outer" style={{ height: `${STORY_COUNT * 150}vh` }}>
+    <section ref={sectionRef} className="ss-outer" style={{ height: `${STORY_COUNT * 150}svh` }}>
       <div className="ss-sticky">
         {/* Animated background */}
         <motion.div

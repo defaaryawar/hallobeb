@@ -158,7 +158,7 @@ export default function ModalHix() {
   const bgY = useTransform(scrollYProgress, [0, 1], [0, 120]);
 
   return (
-    <section ref={sectionRef} className="mhx-outer" style={{ height: `${TOTAL_SLIDES * 110}vh` }}>
+    <section ref={sectionRef} className="mhx-outer" style={{ height: `${TOTAL_SLIDES * 110}svh` }}>
       <motion.div className="mhx-bg" style={{ y: bgY }} />
 
       <div className="mhx-sticky">
