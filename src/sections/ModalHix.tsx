@@ -23,7 +23,8 @@ const imageSlides = [
       "Jalanku, lelahku, dan prosesku akan aku nikmati. Aku tidak tau endingnya akan seperti apa, tapi aku tetap yakin bahwa rencana Allah untuk kita pasti luar biasa.",
   },
   {
-    image: "/foto-modalHix/foto-2.webp",
+    image:
+      "https://res.cloudinary.com/dpzbospvf/video/upload/v1772161167/WhatsApp_Video_2026-02-27_at_09.54.04_ynrfzn.mp4",
     quote:
       "No matter what happens, just remember you're my sweet girl, and I'll always love you through anything and everything.",
   },
